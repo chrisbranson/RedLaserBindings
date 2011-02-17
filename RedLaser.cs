@@ -50,7 +50,7 @@ namespace RedLaser
 		[Export ("cancel")]
 		void Cancel ();
 		
-		[Export ("turnFlash")]
+		[Export ("turnFlash:")]
 		void TurnFlash (bool enabled);
 		
 		[Export ("overlayDelegate", ArgumentSemantic.Retain)][NullAllowed]
