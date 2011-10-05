@@ -7,36 +7,25 @@
  *
  * Updated 29/7/2011, Chris Branson, updated to RedLaser SDK 3.1.1
  *
+ * Updated 4/10/2011, Chris Branson, updated to RedLaser SDK 3.2.0
+ *
  * This is the public API for the RedLaser SDK.
+ *
+ * The functions RL_GetRedLaserSDKVersion, RL_CheckReadyStatus and FindBarcodesInUIImage can be
+ * found in RedLaserSDK.cs within the RedLaser Sample (https://github.com/chrisbranson/RedLaserSample)
  *
 */
 
 using System;
-using MonoTouch.Foundation;
 using System.Drawing;
+using System.Runtime.InteropServices;
+
+using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.ObjCRuntime;
 
-namespace RedLaser
+namespace MonoTouch.RedLaser
 {
-	/*******************************************************************************
-		RL_CheckReadyStatus()
-	
-		This function returns information about whether the SDK can be used. It 
-		doesn't give dynamic state information about what the SDK is currently doing.
-	
-		Generally, positive values mean you can scan, negative values mean you 
-		can't. The returned value *can* change from one call to the next. 
-	
-		If this function returns a negative value, it's usually best to design your
-		app so that it won't attempt to scan at all. If this function returns
-		MissingOSLibraries this is especially important, as the SDK will probably 
-		crash if used. See the documentation. 
-	*/
-	
-	//[Export ("RL_CheckReadyStatus")]
-	//RedLaserStatus CheckReadyStatus();
-
 	/*******************************************************************************
 		BarcodeResult
 	
@@ -69,19 +58,12 @@ namespace RedLaser
 	/*******************************************************************************
 		BarcodePickerControllerDelegate
 
-		The delegate receives messages about the results of a scan.
-
-		barcodePickerController:didScanBarcode:withInfo: is the legacy API;
-		barcodePickerController:returnResults: is the new API that supports multiple
-		barcode capture.
+		The delegate receives messages about the results of a scan. This method
+		gets called when a scan session completes.
 	*/
 	[BaseType (typeof (NSObject))]
 	[Model]
 	interface BarcodePickerControllerDelegate {
-		// - (void) barcodePickerController:(BarcodePickerController*)picker didScanBarcode:(NSString*)ean withInfo:(NSDictionary*)info;
-		[Export ("barcodePickerController:didScanBarcode:withInfo:")]
-		void BarcodeScanned (BarcodePickerController picker, string ean, NSDictionary info);
-		
 		// - (void) barcodePickerController:(BarcodePickerController*)picker returnResults:(NSSet *)results;
 		[Export ("barcodePickerController:returnResults:")]
 		void ReturnResults (BarcodePickerController picker, NSSet results);
@@ -125,8 +107,8 @@ namespace RedLaser
 		[Export ("doneScanning")]
 		void DoneScanning ();
 		
-		[Export ("returnBarcode:withInfo:")]
-		void ReturnBarcode (string ean, NSDictionary info);
+		//[Export ("returnBarcode:withInfo:")]
+		//void ReturnBarcode (string ean, NSDictionary info);
 		
 		[Export ("hasFlash")]
 		bool HasFlash ();
