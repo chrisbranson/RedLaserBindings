@@ -1,9 +1,6 @@
-These are the btouch bindings necessary to use the RedLaser SDK with a MonoTouch app.
+This repository is no longer maintained by me.
 
-To compile use the following command line:-
+For the latest RedLaser bindings and sample please refer to the monotouch bindings repository at https://github.com/mono/monotouch-bindings
 
-/Developer/MonoTouch/usr/bin/btouch -out:RedLaser.dll RedLaser.cs enum.cs
-
-or use the supplied Makefile
-
-See https://github.com/chrisbranson/RedLaserSample for a sample application which uses this library.
+Chris Branson
+April 2012
